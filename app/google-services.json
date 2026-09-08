@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "304585539058",
+    "project_id": "aybu-maas-sendika",
+    "storage_bucket": "aybu-maas-sendika.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:304585539058:android:f82f0e2a7f4ac215837f6b",
+        "android_client_info": {
+          "package_name": "com.aybu.maassendika"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAinQ8sJ9oh_m3GazLJIQKXorGPnabZYE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
