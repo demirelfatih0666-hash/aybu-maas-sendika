@@ -1,0 +1,29 @@
+name: Firestore Rules Deploy
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Kodu al
+        uses: actions/checkout@v4
+
+      - name: Node kur
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Firebase CLI kur
+        run: npm install -g firebase-tools
+
+      - name: Firebase anahtarini hazirla
+        run: |
+          echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}' > firebase-key.json
+
+      - name: Firestore kurallarini yayinla
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: firebase-key.json
+        run: firebase deploy --only firestore:rules --project aybu-maas-sendika
