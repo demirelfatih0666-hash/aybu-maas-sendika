@@ -8,29 +8,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Projeyi al
+      - name: Kodu al
         uses: actions/checkout@v4
 
-      - name: Projeyi ZIP dosyasindan cikar
-        run: |
-          unzip AYBU_Maas_Sendika_GitHub_FINAL.zip -d flutter_project
-          ls -la flutter_project
-
-      - name: Flutter kur
-        uses: subosito/flutter-action@v2
+      - name: Java kur
+        uses: actions/setup-java@v4
         with:
-          channel: stable
+          distribution: temurin
+          java-version: '17'
 
-      - name: Paketleri yukle
-        working-directory: flutter_project
-        run: flutter pub get
+      - name: Gradle kur
+        uses: gradle/actions/setup-gradle@v4
 
       - name: APK olustur
-        working-directory: flutter_project
-        run: flutter build apk --release
+        run: gradle assembleDebug
 
-      - name: APK dosyasini yukle
+      - name: APK yukle
         uses: actions/upload-artifact@v4
         with:
           name: AYBU-Maas-Sendika-APK
-          path: flutter_project/build/app/outputs/flutter-apk/app-release.apk
+          path: app/build/outputs/apk/debug/app-debug.apk
