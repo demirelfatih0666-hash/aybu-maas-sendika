@@ -1,0 +1,36 @@
+name: AYBU Maas Sendika APK
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Projeyi al
+        uses: actions/checkout@v4
+
+      - name: Projeyi ZIP dosyasindan cikar
+        run: |
+          unzip AYBU_Maas_Sendika_GitHub_FINAL.zip -d flutter_project
+          ls -la flutter_project
+
+      - name: Flutter kur
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+
+      - name: Paketleri yukle
+        working-directory: flutter_project
+        run: flutter pub get
+
+      - name: APK olustur
+        working-directory: flutter_project
+        run: flutter build apk --release
+
+      - name: APK dosyasini yukle
+        uses: actions/upload-artifact@v4
+        with:
+          name: AYBU-Maas-Sendika-APK
+          path: flutter_project/build/app/outputs/flutter-apk/app-release.apk
